@@ -6,12 +6,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    apiSpells: []
+    apiSpells: [],
+    currentSpell: {}
   },
 
   mutations: {
     setApiSpells(state, spells) {
       state.apiSpells = spells
+    },
+
+    setCurrentSpell(state, spell) {
+      state.currentSpell = spell
+      console.log(state.currentSpell)
     }
   },
 
@@ -20,6 +26,10 @@ export default new Vuex.Store({
       let res = await api.get("")
       console.log(res)
       commit("setApiSpells", res.data)
+    },
+
+    setSpell({ commit, dispatch }, spell) {
+      commit("setCurrentSpell", spell)
     }
   },
 

@@ -1,6 +1,6 @@
 <template>
   <div id="spell">
-    <li v-for="spell in spells" :key="spell.name">{{spell.name}}</li>
+    <li @click="setSpell(spell)" class="m-1" v-for="spell in spells" :key="spell.id">{{spell.name}}</li>
   </div>
 </template>
 
@@ -16,6 +16,9 @@
     },
 
     methods: {
+      setSpell(spell) {
+        this.$store.dispatch("setSpell", spell)
+      }
     },
 
     computed: {
