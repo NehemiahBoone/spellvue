@@ -15,21 +15,21 @@ export default new Vuex.Store({
       state.apiSpells = spells
     },
 
-    setCurrentSpell(state, spell) {
-      state.currentSpell = spell
-      console.log(state.currentSpell)
+    setCurrentSpell(state, spellData) {
+      state.currentSpell = spellData
     }
   },
 
   actions: {
     async getApiSpells({ commit, dispatch }) {
       let res = await api.get("")
-      console.log(res)
       commit("setApiSpells", res.data)
     },
 
-    setSpell({ commit, dispatch }, spell) {
-      commit("setCurrentSpell", spell)
+    async setSpell({ commit, dispatch }, spell) {
+      let res = await api.get(spell.id)
+      console.log(res.data)
+      commit("setCurrentSpell", res.data)
     }
   },
 
